@@ -19,11 +19,11 @@ function RegisterAndLogin() {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    if (type == "signup") {
+    if (type === "signup") {
       createUserWithEmailAndPassword(auth, email, password)
         .then((data) => {
           console.log(data, "authData");
-          history("/home");
+          history("/dashboard");
         })
         .catch((err) => {
           alert(err.code);
@@ -50,20 +50,20 @@ function RegisterAndLogin() {
       {/* Registration and login Screen */}
       <div className="row">
         <div
-          className="nonactive"
+          className="active"
           onClick={() => setLogin(false)}
         >
-          SignUp
+          Sign Up
         </div>
         <div
           className="active"
           onClick={() => setLogin(true)}
         >
-          SignIn
+          Sign In
         </div>
       </div>
       <h1>{login ? "Log in" : "Register"}</h1>
-      <form onSubmit={(e) => handleSubmit(e, login ? "signin" : "signup")}>
+      <Form onSubmit={(e) => handleSubmit(e, login ? "signin" : "signup")}>
         <input className="text" type="email" name="email" placeholder="Email" />
         <br />
         <input className="text" type='password' name="password" placeholder="Password"/>
@@ -71,7 +71,7 @@ function RegisterAndLogin() {
         <button className="signin">{login ? "SignIn" : "SignUp"}</button>
         <p onClick={handleReset}>Forgot Password?</p>
         <br />
-      </form>
+      </Form>
     </div>
     </>
  
