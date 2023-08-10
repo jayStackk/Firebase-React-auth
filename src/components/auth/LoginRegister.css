@@ -1,13 +1,15 @@
 .signin {
   background-color: #d3d3d3;
   font-family: "Montserrat", sans-serif;
-  color: #fff;
+  color: palegoldenrod;
   font-size: 14px;
   letter-spacing: 1px;
 }
 
 .login {
   position: relative;
+  
+  opacity: 2;
   height: 560px;
   width: 405px;
   margin: auto;
@@ -168,3 +170,4 @@ a {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.2);
 }
+

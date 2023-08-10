@@ -13,7 +13,7 @@ import { Form } from "react-bootstrap";
 function RegisterAndLogin() {
   const [login, setLogin] = useState(false);
 
-  const history = useNavigate();
+  const history = useNavigate(); 
 
   const handleSubmit = (e, type) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ function RegisterAndLogin() {
       signInWithEmailAndPassword(auth, email, password)
         .then((data) => {
           console.log(data, "authData");
-          history("/home");
+          history("/dashboard");
         })
         .catch((err) => {
           alert(err.code);
@@ -45,24 +45,27 @@ function RegisterAndLogin() {
     history("/reset");
   }
   return (
-    <>
+
+   <div>
    <div className="login">
       {/* Registration and login Screen */}
       <div className="row">
         <div
-          className="active"
+          style={{ fontSize: '25px'}}
+          className="active glow"
           onClick={() => setLogin(false)}
-        >
+          >
           Sign Up
         </div>
         <div
-          className="active"
+          style={{ fontSize: '25px'}}
+          className="active glow"
           onClick={() => setLogin(true)}
-        >
+          >
           Sign In
         </div>
       </div>
-      <h1>{login ? "Log in" : "Register"}</h1>
+      <h1 style={{ fontSize: '40px'}} className="glowTwo">{login ? "Log in" : "Register"}</h1>
       <Form onSubmit={(e) => handleSubmit(e, login ? "signin" : "signup")}>
         <input className="text" type="email" name="email" placeholder="Email" />
         <br />
@@ -73,7 +76,8 @@ function RegisterAndLogin() {
         <br />
       </Form>
     </div>
-    </>
+    </div>
+  
  
   );
 }

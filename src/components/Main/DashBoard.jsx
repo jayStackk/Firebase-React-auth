@@ -1,8 +1,14 @@
 import React from 'react'
-
+import './DashBoard.css'
+import NewSide from './SideBar';
 const DashBoard = () => {
+ 
+
   return (
-    <h1>DASHBOARD PAGE .... to be worked on.</h1>
+   <>
+   <NewSide  />
+   </>
+
   )
 }
 

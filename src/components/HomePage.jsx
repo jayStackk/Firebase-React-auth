@@ -1,101 +1,102 @@
 import React from "react";
-import './HomePage.css'
+import "./HomePage.css";
 import { Row, Col, Container, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { auth } from "./auth/firebase";
 import { signOut } from "firebase/auth";
 
-
-
 import { useState, useEffect } from "react";
 
 export default function HomePage() {
+  const [count, setCount] = useState(0);
+  const [timer, setTimer] = useState(0);
 
-    const [count, setCount] = useState(0);
-    const [timer, setTimer] = useState(0);
+  useEffect(() => {
+    if (timer === 0) return;
 
+    const interval = setInterval(() => {
+      setTimer(timer - 1);
+    }, 1000);
 
-    useEffect(() => {
-        if (timer === 0) return;
+    return () => {
+      clearInterval(interval);
+    };
+  }, [timer]);
 
-        const interval = setInterval(() => {
-            setTimer(timer - 1);
-        }, 1000);
+  const history = useNavigate();
 
-        return () => {
-            clearInterval(interval)
+  const handleClick = () => {
+    signOut(auth).then((val) => {
+      console.log(val, "val");
+      history("/");
+    });
+  };
 
-        }
-    }, [timer]);
+  // useEffect(() => {
+  //     if (timer === 0) return;
 
-    const history = useNavigate()
+  //     const interval = setInterval(() => {
+  //         setTimer(timer - 1);
+  //     }, 1000);
 
-    const handleClick = () =>{
-        signOut(auth).then(val=>{
-            console.log(val,"val")
-            history('/')
-        })
-    }
+  //     return () => {
+  //         clearInterval(interval);
+  //     };
+  // }, [timer]);
 
-    // useEffect(() => {
-    //     if (timer === 0) return;
+  return (
+    <>
+      <div className="home-container">
+        {/* <Row>
+          <Col className="home-timer"> Timer : {timer} </Col>
 
-    //     const interval = setInterval(() => {
-    //         setTimer(timer - 1);
-    //     }, 1000);
+          <Col className="home-count">{count}</Col>
 
-    //     return () => {
-    //         clearInterval(interval);
-    //     };
-    // }, [timer]);
+          <Button
+            className="home-btn-start btn"
+            onClick={() => {
+              setTimer(10);
+              setCount(0);
+            }}
+            disabled={timer !== 0}
+          >
+            start
+          </Button>
+        </Row> */}
+        <Col className="home-timer"> Timer : {timer} </Col>
 
-    return (
-        <>
+        <Col className="home-count">{count}</Col>
 
-            <div className="home-container">
-                <Row>
-                    <Col className="home-timer"> Timer : {timer} </Col>
+        <Button
+          className="home-btn-start btn"
+          onClick={() => {
+            setTimer(10);
+            setCount(0);
+          }}
+          disabled={timer !== 0}
+        >
+          start
+        </Button>
 
-                    <Col className='home-count'>{count}</Col>
+        <button
+          className="home-btn-click btn"
+          onClick={() => setCount(count + 1)}
+          disabled={timer === 0}
+        >
+          click me
+        </button>
+        <button
+          className="home-btn-reset btn"
+          onClick={() => {
+            setCount(0);
+            setTimer(0);
+          }}
+        >
+          reset
+        </button>
+      </div>
 
-                    <Button
-                        className="home-btn-start btn"
-                        onClick={() => {
-                            setTimer(10);
-                            setCount(0);
-                        }}
-                        disabled={timer !== 0}
-                    >
-                        start
-                    </Button>
-
-
-                </Row>
-
-
-                <button
-                    className="home-btn-click btn"
-                    onClick={() => setCount(count + 1)}
-                    disabled={timer === 0}
-                >
-                    click me
-                </button>
-                <button
-                    className="home-btn-reset btn"
-                    onClick={() => {
-                        setCount(0);
-                        setTimer(0);
-                    }}
-                >
-                    reset
-                </button>
-            </div>
-
-            <button onClick={handleClick}>SignOut</button>
-
-        </>
-    )
-
-
+      <button onClick={handleClick}>SignOut</button>
+    </>
+  );
 }
-
