@@ -1,6 +1,6 @@
 import React from "react";
 import "./HomePage.css";
-import { Row, Col, Container, Button } from "react-bootstrap";
+import { Col, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { auth } from "./firebase";
 import { signOut } from "firebase/auth";
