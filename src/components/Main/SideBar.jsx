@@ -1,5 +1,10 @@
+import { Button } from "react-bootstrap";
 import "./SideBar.css";
 import { useState } from "react";
+import { auth } from "../auth/firebase";
+import { signOut } from "@firebase/auth";
+import { useNavigate } from "react-router-dom";
+
 
 export default function NewSide() {
 
@@ -7,6 +12,15 @@ export default function NewSide() {
   const [isOpen, setopen] = useState(true);
   const toggleSidebar = () => {
     setopen(!isOpen);
+  };
+
+  const history = useNavigate();
+
+  const handleClick = () => {
+    signOut(auth).then((val) => {
+      console.log(val, "val");
+      history("/");
+    });
   };
 
   return (
@@ -30,6 +44,7 @@ export default function NewSide() {
         </button>
 
         <a href="/home">Clicker!</a>
+        <a href="/miniproj">New App !</a>
         
       </div>
 
@@ -55,6 +70,10 @@ export default function NewSide() {
           Navigate by using the sidebar! Enjoy.
         </p>
       </div>
+
+      <Button onClick={handleClick}>
+          Sign out 
+      </Button>
     </div>
   );
 }

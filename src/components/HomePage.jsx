@@ -28,41 +28,13 @@ export default function HomePage() {
   const handleClick = () => {
     signOut(auth).then((val) => {
       console.log(val, "val");
-      history("/");
+      history("/dashboard");
     });
   };
-
-  // useEffect(() => {
-  //     if (timer === 0) return;
-
-  //     const interval = setInterval(() => {
-  //         setTimer(timer - 1);
-  //     }, 1000);
-
-  //     return () => {
-  //         clearInterval(interval);
-  //     };
-  // }, [timer]);
 
   return (
     <>
       <div className="home-container">
-        {/* <Row>
-          <Col className="home-timer"> Timer : {timer} </Col>
-
-          <Col className="home-count">{count}</Col>
-
-          <Button
-            className="home-btn-start btn"
-            onClick={() => {
-              setTimer(10);
-              setCount(0);
-            }}
-            disabled={timer !== 0}
-          >
-            start
-          </Button>
-        </Row> */}
         <Col className="home-timer"> Timer : {timer} </Col>
 
         <Col className="home-count">{count}</Col>
@@ -95,8 +67,7 @@ export default function HomePage() {
           reset
         </button>
       </div>
-
-      <button onClick={handleClick}>SignOut</button>
+      <Button onClick={handleClick}>Go back</Button>
     </>
   );
 }
