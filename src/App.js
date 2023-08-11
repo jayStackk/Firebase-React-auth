@@ -8,16 +8,10 @@ import PasswordLoginWithFirebase from './components/auth/PasswordLoginWithFireba
 function App() {
   return (
     <>
-  
       <header className="App-header">
       <PasswordLoginWithFirebase />
       </header>
-     
-
     </>
-
-
-
   );
 }
 

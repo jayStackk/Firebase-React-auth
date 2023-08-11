@@ -8,6 +8,7 @@ import { signOut } from "firebase/auth";
 import { useState, useEffect } from "react";
 
 export default function HomePage() {
+
   const [count, setCount] = useState(0);
   const [timer, setTimer] = useState(0);
 
