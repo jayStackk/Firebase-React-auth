@@ -1,14 +1,12 @@
 import { Button } from "react-bootstrap";
 import "./SideBar.css";
 import { useState } from "react";
-import { auth } from "../auth/firebase";
+import { auth } from "../firebase";
 import { signOut } from "@firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 
 export default function NewSide() {
-
-
   const [isOpen, setopen] = useState(true);
   const toggleSidebar = () => {
     setopen(!isOpen);
@@ -22,7 +20,6 @@ export default function NewSide() {
       history("/");
     });
   };
-
   return (
     <div>
       <div
